@@ -4,9 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maxime's Thoughts</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> /* Viewing Options */
+.view-options {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(20,20,20,0.9);
+  border: 2px solid white;
+  padding: 15px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.view-options h3 {
+  margin: 0;
+  color: white;
+  font-size: 18px;
+}
+
+.view-options button {
+  padding: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.view-options button:hover {
+  background: white;
+  color: black;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay-box {
+  text-align: center;
+  color: white;
+}
+
+.overlay-box h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.overlay-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.overlay-buttons button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background: black;
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.overlay-buttons button:hover {
+  background: white;
+  color: black;
+}
+
+/* Cinema Mode */
+.cinema-mode {
+  background: black;
+  filter: brightness(0.7);
+}
+
+/* CRT */
+.crt {
+  animation: flicker 0.08s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.97; }
+  100% { opacity: 1; }
+}
 </head>
 <body>
+    <button onclick="redPill()">Pilule Rouge</button>
+    </div>
+  </div>
+</div>
+
+<!-- Viewing Options -->
+<div class="view-options">
+  <h3>Visionnage</h3>
+
+  <button onclick="toggleFullscreen()">
+    Plein écran
+  </button>
+
+  <button onclick="toggleCinemaMode()">
+    Mode Cinéma
+  </button>
+
+  <button onclick="toggleCRT()">
+    CRT Effect
+  </button>
+</div>
   <div class="desktop">
     <div class="window main-window">
       <div class="title-bar">
@@ -76,6 +191,108 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <scriptfunction showSection(sectionId) {
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.add('hidden');
+  });
+
+  document.getElementById(sectionId).classList.remove('hidden');
+}
+
+/* =========================
+   VIEW OPTIONS
+========================= */
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function toggleCinemaMode() {
+  document.body.classList.toggle('cinema-mode');
+}
+
+function toggleCRT() {
+  document.body.classList.toggle('crt');
+}
+
+/* =========================
+   EXISTENTIAL EVENT
+========================= */
+
+setTimeout(() => {
+  document.getElementById('existential-overlay').classList.remove('hidden');
+}, 45000); // 45 secondes après le début
+
+function answerExistence(answer) {
+
+  document.getElementById('existential-overlay').classList.add('hidden');
+
+  if (answer) {
+    return;
+  }
+
+  // Tous les liens disparaissent
+  document.querySelectorAll('a').forEach(link => {
+    link.outerHTML = `
+      <p class="fake-text">
+        If you don't exist, why are you here
+      </p>
+    `;
+  });
+
+  // Ajout du bouton après 1 minute
+  setTimeout(() => {
+    document.getElementById('pill-overlay').classList.remove('hidden');
+  }, 60000);
+}
+
+/* =========================
+   PILLS
+========================= */
+
+function bluePill() {
+
+  // recharge le site normalement
+  location.reload();
+}
+
+function redPill() {
+
+  document.body.innerHTML = `
+    <div style="
+      background:black;
+      color:white;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:3rem;
+      font-family:sans-serif;
+    ">
+      You've made your choice
+    </div>
+  `;
+
+  setTimeout(() => {
+    window.close();
+
+    // fallback si le navigateur refuse
+    document.body.innerHTML += `
+      <p style="
+        position:fixed;
+        bottom:20px;
+        width:100%;
+        text-align:center;
+        color:red;
+      ">
+        Close the window.
+      </p>
+    `;
+  }, 4000);
+}></script>
 </body>
 </html>
