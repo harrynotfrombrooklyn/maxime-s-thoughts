@@ -566,23 +566,35 @@ You've made your choice
 
 setTimeout(()=>{
 
-window.close();
+document.body.innerHTML = `
 
-document.body.innerHTML += `
-
-<p style="
-position:fixed;
-bottom:20px;
-width:100%;
-text-align:center;
+<div style="
+background:black;
 color:red;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:3rem;
+font-family:sans-serif;
 ">
 
-Close the window.
+<p>Close the window.</p>
 
-</p>
+</div>
 
 `;
+
+window.open('','_self');
+window.close();
+
+setTimeout(()=>{
+
+document.documentElement.innerHTML = "";
+document.body.style.background = "black";
+
+},1000);
 
 },4000);
 
