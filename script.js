@@ -1,9 +1,8 @@
-function showSection(sectionId) {
-  const sections = document.querySelectorAll('.section');
+document.addEventListener("mousemove",(e)=>{
 
-  sections.forEach(section => {
-    section.classList.add('hidden');
-  });
+const cursor=document.getElementById("ghost-cursor");
 
-  document.getElementById(sectionId).classList.remove('hidden');
-}
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+
+});
