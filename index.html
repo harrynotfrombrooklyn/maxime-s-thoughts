@@ -6,144 +6,13 @@
 
 <title>Maxime's Thoughts</title>
 
+<link rel="stylesheet" href="style.css">
+
 <style>
 
 /* =========================
-   WINDOWS XP STYLE
+   VIEW OPTIONS
 ========================= */
-
-body{
-    margin:0;
-    padding:0;
-    background:#008080;
-    font-family:Tahoma, sans-serif;
-    overflow-x:hidden;
-    color:black;
-}
-
-/* Desktop */
-
-.desktop{
-    min-height:100vh;
-    padding:40px;
-    background:
-    linear-gradient(to bottom,#1e5799,#2989d8,#207cca,#7db9e8);
-}
-
-/* Window */
-
-.window{
-    width:900px;
-    max-width:95%;
-    margin:auto;
-    border:3px solid #0a246a;
-    background:#ece9d8;
-    box-shadow:8px 8px 0 rgba(0,0,0,0.4);
-}
-
-/* Title Bar */
-
-.title-bar{
-    background:linear-gradient(to right,#0a246a,#3a6ea5);
-    color:white;
-    padding:8px 12px;
-    font-weight:bold;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.window-buttons{
-    display:flex;
-    gap:4px;
-}
-
-.window-buttons div{
-    width:18px;
-    height:18px;
-    background:#d4d0c8;
-    border:1px solid white;
-    box-shadow:inset -1px -1px #404040;
-}
-
-/* Content */
-
-.content{
-    padding:25px;
-}
-
-h1{
-    margin-top:0;
-    font-size:30px;
-}
-
-h2{
-    background:#0a246a;
-    color:white;
-    padding:5px 10px;
-}
-
-.category{
-    margin-bottom:25px;
-}
-
-.category h3{
-    margin-bottom:10px;
-}
-
-/* Buttons */
-
-.menu{
-    display:flex;
-    gap:15px;
-    margin-bottom:30px;
-}
-
-.menu-btn,
-.view-options button,
-.overlay-buttons button,
-.video-options button{
-    background:#d4d0c8;
-    border-top:2px solid white;
-    border-left:2px solid white;
-    border-right:2px solid #404040;
-    border-bottom:2px solid #404040;
-    padding:10px 20px;
-    cursor:pointer;
-    font-family:Tahoma,sans-serif;
-}
-
-.menu-btn:active,
-.view-options button:active,
-.overlay-buttons button:active,
-.video-options button:active{
-    border-top:2px solid #404040;
-    border-left:2px solid #404040;
-    border-right:2px solid white;
-    border-bottom:2px solid white;
-}
-
-/* Links */
-
-.video-link{
-    display:block;
-    margin:10px 0;
-    text-decoration:none;
-    color:#0000cc;
-    font-weight:bold;
-}
-
-.video-link:hover{
-    text-decoration:underline;
-}
-
-/* Hidden */
-
-.hidden{
-    display:none;
-}
-
-/* Viewing Options */
 
 .view-options{
     position:fixed;
@@ -160,41 +29,41 @@ h2{
     margin-top:0;
 }
 
-/* Overlay */
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.95);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
+.view-options button,
+.overlay-buttons button,
+.video-options button{
+    background:#d4d0c8;
+    border-top:2px solid white;
+    border-left:2px solid white;
+    border-right:2px solid #404040;
+    border-bottom:2px solid #404040;
+    padding:10px 20px;
+    cursor:pointer;
+    font-family:Tahoma,sans-serif;
+    margin-bottom:10px;
+    width:100%;
 }
 
-.overlay-box{
-    text-align:center;
-    color:white;
+.view-options button:active,
+.overlay-buttons button:active,
+.video-options button:active{
+    border-top:2px solid #404040;
+    border-left:2px solid #404040;
+    border-right:2px solid white;
+    border-bottom:2px solid white;
 }
 
-.overlay-box h1{
-    font-size:3rem;
-    margin-bottom:30px;
-}
-
-.overlay-buttons{
-    display:flex;
-    gap:20px;
-    justify-content:center;
-}
-
-/* Cinema Mode */
+/* =========================
+   CINEMA MODE
+========================= */
 
 .cinema-mode{
     filter:brightness(0.7);
 }
 
-/* CRT */
+/* =========================
+   CRT EFFECT
+========================= */
 
 .crt{
     animation:flicker 0.08s infinite;
@@ -206,7 +75,9 @@ h2{
     100%{opacity:1;}
 }
 
-/* Video Modal */
+/* =========================
+   VIDEO MODAL
+========================= */
 
 .video-modal{
     position:fixed;
@@ -237,12 +108,57 @@ h2{
     justify-content:center;
 }
 
+/* =========================
+   OVERLAYS
+========================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.overlay-box{
+    text-align:center;
+    color:white;
+}
+
+.overlay-box h1{
+    font-size:3rem;
+    margin-bottom:30px;
+}
+
+.overlay-buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+    display:none !important;
+}
+
+.video-link{
+    display:block;
+    margin:10px 0;
+    cursor:pointer;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<!-- Viewing Options -->
+<!-- VIEW OPTIONS -->
 
 <div class="view-options">
 
@@ -262,22 +178,12 @@ CRT Effect
 
 </div>
 
-<!-- Main Window -->
-
 <div class="desktop">
 
-<div class="window">
+<div class="window main-window">
 
 <div class="title-bar">
-
-<span>Maxime's Thoughts.exe</span>
-
-<div class="window-buttons">
-<div></div>
-<div></div>
-<div></div>
-</div>
-
+<span>Maxime's Thoughts</span>
 </div>
 
 <div class="content">
@@ -286,11 +192,13 @@ CRT Effect
 
 <div class="menu">
 
-<button class="menu-btn" onclick="showSection('memories')">
+<button class="menu-btn memories-btn"
+onclick="showSection('memories')">
 Memories
 </button>
 
-<button class="menu-btn" onclick="showSection('dream')">
+<button class="menu-btn dream-btn"
+onclick="showSection('dream')">
 Dream
 </button>
 
@@ -317,39 +225,48 @@ Memory 0 - Affaire De Famille
 
 <h3>2025</h3>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/CtvFAAjF0-4')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/CtvFAAjF0-4')">
 Memory 001 - Choix
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/90WCyY83_9A')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/90WCyY83_9A')">
 Memory 002 - Rencontre avec Gérard Depardegato
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/1pvvyg5GJ3g')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/1pvvyg5GJ3g')">
 Memory 004 - Le Soleil
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/Nc9Orp2cxuw')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/Nc9Orp2cxuw')">
 Memory 004 - Les Aventures de Kiki
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/qtiVuuRuISA')">
-Memory 005 - A la rencontre de Full
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/qtiVuuRuISA')">
+Memory 005 - A la rencontre de "Full", tueur de série
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/7X8O0PHcizs')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/7X8O0PHcizs')">
 Memory 006 - I
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/wB5v2-8GIuk')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/wB5v2-8GIuk')">
 Memory 007 - Couloirs
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/Rs2dO1W8VNY')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/Rs2dO1W8VNY')">
 Memory 008 - The Last Shoot
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/IguJFcaVQbM')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/IguJFcaVQbM')">
 Memory 009 - Film Pas Ouf Sans Titre
 </a>
 
@@ -359,11 +276,13 @@ Memory 009 - Film Pas Ouf Sans Titre
 
 <h3>2026</h3>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ofu6EcWJEGg')">
-Memory 010 - Après moi...la vie
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/ofu6EcWJEGg')">
+Memory 010 - Après moi... la vie
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ZcdLIhwvEyc')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/ZcdLIhwvEyc')">
 Memory 011 - A Short Film About My Dark Thoughts
 </a>
 
@@ -381,19 +300,23 @@ Memory 011 - A Short Film About My Dark Thoughts
 
 <h3>2025</h3>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/7L7lhqFzqwM')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/7L7lhqFzqwM')">
 Dream 001 - Rubberen Eend
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/SjrpaZk-2rk')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/SjrpaZk-2rk')">
 Dream 002 - Rubberen Eend is Dood
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/HXDScTFGG1g')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/HXDScTFGG1g')">
 Dream 003 - Le Banc
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/kSegBWLV94Y')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/kSegBWLV94Y')">
 Dream 004 - C₉H₁₃NO₃
 </a>
 
@@ -403,11 +326,13 @@ Dream 004 - C₉H₁₃NO₃
 
 <h3>2026</h3>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ileFfpuzVTA')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/ileFfpuzVTA')">
 Dream 005 - The Painter
 </a>
 
-<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/AqVMOK67OAc')">
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/AqVMOK67OAc')">
 Dream 006 - S'en coincer les godillots dans la gorge
 </a>
 
@@ -419,7 +344,7 @@ Dream 006 - S'en coincer les godillots dans la gorge
 </div>
 </div>
 
-<!-- Video Modal -->
+<!-- VIDEO MODAL -->
 
 <div id="videoModal" class="video-modal hidden">
 
@@ -446,7 +371,7 @@ Fermer
 </div>
 </div>
 
-<!-- Existential Overlay -->
+<!-- EXISTENTIAL OVERLAY -->
 
 <div id="existential-overlay" class="overlay hidden">
 
@@ -465,10 +390,11 @@ No
 </button>
 
 </div>
+
 </div>
 </div>
 
-<!-- Pill Overlay -->
+<!-- PILL OVERLAY -->
 
 <div id="pill-overlay" class="overlay hidden">
 
@@ -487,6 +413,7 @@ Red Pill
 </button>
 
 </div>
+
 </div>
 </div>
 
@@ -558,7 +485,10 @@ document.getElementById('videoFrame').src = "";
 function watchOnYoutube(){
 
 let youtubeUrl = currentVideo
-.replace("https://www.youtube.com/embed/","https://youtu.be/");
+.replace(
+"https://www.youtube.com/embed/",
+"https://youtu.be/"
+);
 
 window.open(youtubeUrl,"_blank");
 
