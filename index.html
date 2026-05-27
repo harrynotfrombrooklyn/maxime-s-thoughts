@@ -1,353 +1,661 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maxime's Thoughts</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+<title>Maxime's Thoughts</title>
 
-    body {
-      background: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    .desktop {
-      padding: 40px;
-    }
+/* =========================
+   WINDOWS XP STYLE
+========================= */
 
-    .window {
-      border: 2px solid white;
-      padding: 20px;
-      background: #1a1a1a;
-    }
+body{
+    margin:0;
+    padding:0;
+    background:#008080;
+    font-family:Tahoma, sans-serif;
+    overflow-x:hidden;
+    color:black;
+}
 
-    .title-bar {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
+/* Desktop */
 
-    .menu {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+.desktop{
+    min-height:100vh;
+    padding:40px;
+    background:
+    linear-gradient(to bottom,#1e5799,#2989d8,#207cca,#7db9e8);
+}
 
-    .menu button {
-      padding: 10px 20px;
-      cursor: pointer;
-      background: black;
-      color: white;
-      border: 1px solid white;
-    }
+/* Window */
 
-    .section.hidden {
-      display: none;
-    }
+.window{
+    width:900px;
+    max-width:95%;
+    margin:auto;
+    border:3px solid #0a246a;
+    background:#ece9d8;
+    box-shadow:8px 8px 0 rgba(0,0,0,0.4);
+}
 
-    .category {
-      margin-bottom: 20px;
-    }
+/* Title Bar */
 
-    .category a {
-      display: block;
-      color: cyan;
-      margin: 5px 0;
-    }
+.title-bar{
+    background:linear-gradient(to right,#0a246a,#3a6ea5);
+    color:white;
+    padding:8px 12px;
+    font-weight:bold;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-    /* Viewing Options */
-    .view-options {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(20,20,20,0.9);
-      border: 2px solid white;
-      padding: 15px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+.window-buttons{
+    display:flex;
+    gap:4px;
+}
 
-    .view-options h3 {
-      margin: 0;
-      color: white;
-      font-size: 18px;
-    }
+.window-buttons div{
+    width:18px;
+    height:18px;
+    background:#d4d0c8;
+    border:1px solid white;
+    box-shadow:inset -1px -1px #404040;
+}
 
-    .view-options button {
-      padding: 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      cursor: pointer;
-    }
+/* Content */
 
-    .view-options button:hover {
-      background: white;
-      color: black;
-    }
+.content{
+    padding:25px;
+}
 
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-    }
+h1{
+    margin-top:0;
+    font-size:30px;
+}
 
-    .hidden {
-      display: none;
-    }
+h2{
+    background:#0a246a;
+    color:white;
+    padding:5px 10px;
+}
 
-    .overlay-box {
-      text-align: center;
-      color: white;
-    }
+.category{
+    margin-bottom:25px;
+}
 
-    .overlay-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+.category h3{
+    margin-bottom:10px;
+}
 
-    .overlay-buttons button {
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      background: black;
-      color: white;
-      border: 2px solid white;
-      cursor: pointer;
-    }
+/* Buttons */
 
-    .cinema-mode {
-      background: black;
-      filter: brightness(0.7);
-    }
+.menu{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
 
-    .crt {
-      animation: flicker 0.08s infinite;
-    }
+.menu-btn,
+.view-options button,
+.overlay-buttons button,
+.video-options button{
+    background:#d4d0c8;
+    border-top:2px solid white;
+    border-left:2px solid white;
+    border-right:2px solid #404040;
+    border-bottom:2px solid #404040;
+    padding:10px 20px;
+    cursor:pointer;
+    font-family:Tahoma,sans-serif;
+}
 
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.97; }
-      100% { opacity: 1; }
-    }
+.menu-btn:active,
+.view-options button:active,
+.overlay-buttons button:active,
+.video-options button:active{
+    border-top:2px solid #404040;
+    border-left:2px solid #404040;
+    border-right:2px solid white;
+    border-bottom:2px solid white;
+}
 
-  </style>
+/* Links */
+
+.video-link{
+    display:block;
+    margin:10px 0;
+    text-decoration:none;
+    color:#0000cc;
+    font-weight:bold;
+}
+
+.video-link:hover{
+    text-decoration:underline;
+}
+
+/* Hidden */
+
+.hidden{
+    display:none;
+}
+
+/* Viewing Options */
+
+.view-options{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#ece9d8;
+    border:2px solid #0a246a;
+    padding:15px;
+    z-index:999;
+    width:180px;
+}
+
+.view-options h3{
+    margin-top:0;
+}
+
+/* Overlay */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.overlay-box{
+    text-align:center;
+    color:white;
+}
+
+.overlay-box h1{
+    font-size:3rem;
+    margin-bottom:30px;
+}
+
+.overlay-buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+}
+
+/* Cinema Mode */
+
+.cinema-mode{
+    filter:brightness(0.7);
+}
+
+/* CRT */
+
+.crt{
+    animation:flicker 0.08s infinite;
+}
+
+@keyframes flicker{
+    0%{opacity:1;}
+    50%{opacity:0.97;}
+    100%{opacity:1;}
+}
+
+/* Video Modal */
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.video-box{
+    background:#111;
+    padding:20px;
+    width:90%;
+    max-width:1000px;
+}
+
+.video-box iframe{
+    width:100%;
+    height:560px;
+}
+
+.video-options{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    justify-content:center;
+}
+
+</style>
 </head>
 
 <body>
 
 <!-- Viewing Options -->
+
 <div class="view-options">
-  <h3>Visionnage</h3>
 
-  <button onclick="toggleFullscreen()">
-    Plein écran
-  </button>
+<h3>Visionnage</h3>
 
-  <button onclick="toggleCinemaMode()">
-    Mode Cinéma
-  </button>
+<button onclick="toggleFullscreen()">
+Plein écran
+</button>
 
-  <button onclick="toggleCRT()">
-    CRT Effect
-  </button>
+<button onclick="toggleCinemaMode()">
+Mode Cinéma
+</button>
+
+<button onclick="toggleCRT()">
+CRT Effect
+</button>
+
 </div>
 
+<!-- Main Window -->
+
 <div class="desktop">
-  <div class="window main-window">
 
-    <div class="title-bar">
-      <span>Maxime's Thoughts</span>
-    </div>
+<div class="window">
 
-    <div class="content">
+<div class="title-bar">
 
-      <h1>Bienvenue dans Maxime's Thoughts</h1>
+<span>Maxime's Thoughts.exe</span>
 
-      <div class="menu">
-        <button onclick="showSection('memories')">
-          Memories
-        </button>
+<div class="window-buttons">
+<div></div>
+<div></div>
+<div></div>
+</div>
 
-        <button onclick="showSection('dream')">
-          Dream
-        </button>
-      </div>
+</div>
 
-      <div id="memories" class="section hidden">
-        <h2>Memories</h2>
+<div class="content">
 
-        <div class="category">
-          <h3>2024</h3>
-          <a href="https://youtu.be/YLIDy7gZzBY" target="_blank">
-            Memory 0 - Affaire De Famille
-          </a>
-        </div>
-      </div>
+<h1>Bienvenue dans Maxime's Thoughts</h1>
 
-      <div id="dream" class="section hidden">
-        <h2>Dream</h2>
+<div class="menu">
 
-        <div class="category">
-          <h3>2025</h3>
+<button class="menu-btn" onclick="showSection('memories')">
+Memories
+</button>
 
-          <a href="https://youtu.be/7L7lhqFzqwM" target="_blank">
-            Dream 001 - Rubberen Eend
-          </a>
-        </div>
-      </div>
+<button class="menu-btn" onclick="showSection('dream')">
+Dream
+</button>
 
-    </div>
-  </div>
+</div>
+
+<!-- MEMORIES -->
+
+<div id="memories" class="section hidden">
+
+<h2>Memories</h2>
+
+<div class="category">
+
+<h3>2024</h3>
+
+<a class="video-link"
+onclick="openVideo('https://www.youtube.com/embed/YLIDy7gZzBY')">
+Memory 0 - Affaire De Famille
+</a>
+
+</div>
+
+<div class="category">
+
+<h3>2025</h3>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/CtvFAAjF0-4')">
+Memory 001 - Choix
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/90WCyY83_9A')">
+Memory 002 - Rencontre avec Gérard Depardegato
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/1pvvyg5GJ3g')">
+Memory 004 - Le Soleil
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/Nc9Orp2cxuw')">
+Memory 004 - Les Aventures de Kiki
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/qtiVuuRuISA')">
+Memory 005 - A la rencontre de Full
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/7X8O0PHcizs')">
+Memory 006 - I
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/wB5v2-8GIuk')">
+Memory 007 - Couloirs
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/Rs2dO1W8VNY')">
+Memory 008 - The Last Shoot
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/IguJFcaVQbM')">
+Memory 009 - Film Pas Ouf Sans Titre
+</a>
+
+</div>
+
+<div class="category">
+
+<h3>2026</h3>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ofu6EcWJEGg')">
+Memory 010 - Après moi...la vie
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ZcdLIhwvEyc')">
+Memory 011 - A Short Film About My Dark Thoughts
+</a>
+
+</div>
+
+</div>
+
+<!-- DREAM -->
+
+<div id="dream" class="section hidden">
+
+<h2>Dream</h2>
+
+<div class="category">
+
+<h3>2025</h3>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/7L7lhqFzqwM')">
+Dream 001 - Rubberen Eend
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/SjrpaZk-2rk')">
+Dream 002 - Rubberen Eend is Dood
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/HXDScTFGG1g')">
+Dream 003 - Le Banc
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/kSegBWLV94Y')">
+Dream 004 - C₉H₁₃NO₃
+</a>
+
+</div>
+
+<div class="category">
+
+<h3>2026</h3>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/ileFfpuzVTA')">
+Dream 005 - The Painter
+</a>
+
+<a class="video-link" onclick="openVideo('https://www.youtube.com/embed/AqVMOK67OAc')">
+Dream 006 - S'en coincer les godillots dans la gorge
+</a>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- Video Modal -->
+
+<div id="videoModal" class="video-modal hidden">
+
+<div class="video-box">
+
+<iframe id="videoFrame"
+src=""
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+<div class="video-options">
+
+<button onclick="watchOnYoutube()">
+Voir sur YouTube
+</button>
+
+<button onclick="closeVideo()">
+Fermer
+</button>
+
+</div>
+
+</div>
 </div>
 
 <!-- Existential Overlay -->
+
 <div id="existential-overlay" class="overlay hidden">
-  <div class="overlay-box">
 
-    <h1>Do you exist?</h1>
+<div class="overlay-box">
 
-    <div class="overlay-buttons">
-      <button onclick="answerExistence(true)">
-        Yes
-      </button>
+<h1>Do you exist?</h1>
 
-      <button onclick="answerExistence(false)">
-        No
-      </button>
-    </div>
+<div class="overlay-buttons">
 
-  </div>
+<button onclick="answerExistence(true)">
+Yes
+</button>
+
+<button onclick="answerExistence(false)">
+No
+</button>
+
+</div>
+</div>
 </div>
 
 <!-- Pill Overlay -->
+
 <div id="pill-overlay" class="overlay hidden">
-  <div class="overlay-box">
 
-    <h1>Choose wisely</h1>
+<div class="overlay-box">
 
-    <div class="overlay-buttons">
-      <button onclick="bluePill()">
-        Blue Pill
-      </button>
+<h1>Choose wisely</h1>
 
-      <button onclick="redPill()">
-        Red Pill
-      </button>
-    </div>
+<div class="overlay-buttons">
 
-  </div>
+<button onclick="bluePill()">
+Blue Pill
+</button>
+
+<button onclick="redPill()">
+Red Pill
+</button>
+
+</div>
+</div>
 </div>
 
 <script>
 
-function showSection(sectionId) {
+/* =========================
+   SHOW SECTION
+========================= */
 
-  document.querySelectorAll('.section').forEach(section => {
-    section.classList.add('hidden');
-  });
+function showSection(sectionId){
 
-  document.getElementById(sectionId).classList.remove('hidden');
+document.querySelectorAll('.section').forEach(section=>{
+section.classList.add('hidden');
+});
+
+document.getElementById(sectionId)
+.classList.remove('hidden');
+
 }
 
-/* VIEW OPTIONS */
+/* =========================
+   VIEW OPTIONS
+========================= */
 
-function toggleFullscreen() {
+function toggleFullscreen(){
 
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
+if(!document.fullscreenElement){
+document.documentElement.requestFullscreen();
+}else{
+document.exitFullscreen();
 }
 
-function toggleCinemaMode() {
-  document.body.classList.toggle('cinema-mode');
 }
 
-function toggleCRT() {
-  document.body.classList.toggle('crt');
+function toggleCinemaMode(){
+document.body.classList.toggle('cinema-mode');
 }
 
-/* EXISTENTIAL EVENT */
-
-setTimeout(() => {
-  document.getElementById('existential-overlay')
-    .classList.remove('hidden');
-}, 45000);
-
-function answerExistence(answer) {
-
-  document.getElementById('existential-overlay')
-    .classList.add('hidden');
-
-  if (answer) return;
-
-  document.querySelectorAll('a').forEach(link => {
-
-    link.outerHTML = `
-      <p class="fake-text">
-        If you don't exist, why are you here
-      </p>
-    `;
-  });
-
-  setTimeout(() => {
-    document.getElementById('pill-overlay')
-      .classList.remove('hidden');
-  }, 60000);
+function toggleCRT(){
+document.body.classList.toggle('crt');
 }
 
-/* PILLS */
+/* =========================
+   VIDEO SYSTEM
+========================= */
 
-function bluePill() {
-  location.reload();
+let currentVideo = "";
+
+function openVideo(url){
+
+currentVideo = url;
+
+document.getElementById('videoFrame').src = url;
+
+document.getElementById('videoModal')
+.classList.remove('hidden');
+
 }
 
-function redPill() {
+function closeVideo(){
 
-  document.body.innerHTML = `
-    <div style="
-      background:black;
-      color:white;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size:3rem;
-      font-family:sans-serif;
-    ">
-      You've made your choice
-    </div>
-  `;
+document.getElementById('videoModal')
+.classList.add('hidden');
 
-  setTimeout(() => {
+document.getElementById('videoFrame').src = "";
 
-    window.close();
+}
 
-    document.body.innerHTML += `
-      <p style="
-        position:fixed;
-        bottom:20px;
-        width:100%;
-        text-align:center;
-        color:red;
-      ">
-        Close the window.
-      </p>
-    `;
+function watchOnYoutube(){
 
-  }, 4000);
+let youtubeUrl = currentVideo
+.replace("https://www.youtube.com/embed/","https://youtu.be/");
+
+window.open(youtubeUrl,"_blank");
+
+}
+
+/* =========================
+   EXISTENTIAL EVENT
+========================= */
+
+setTimeout(()=>{
+
+document.getElementById('existential-overlay')
+.classList.remove('hidden');
+
+},45000);
+
+function answerExistence(answer){
+
+document.getElementById('existential-overlay')
+.classList.add('hidden');
+
+if(answer){
+return;
+}
+
+document.querySelectorAll('.video-link').forEach(link=>{
+
+link.outerHTML = `
+<p style="color:red;font-size:20px;">
+If you don't exist, why are you here
+</p>
+`;
+
+});
+
+setTimeout(()=>{
+
+document.getElementById('pill-overlay')
+.classList.remove('hidden');
+
+},60000);
+
+}
+
+/* =========================
+   PILLS
+========================= */
+
+function bluePill(){
+
+location.reload();
+
+}
+
+function redPill(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:3rem;
+font-family:sans-serif;
+">
+
+You've made your choice
+
+</div>
+
+`;
+
+setTimeout(()=>{
+
+window.close();
+
+document.body.innerHTML += `
+
+<p style="
+position:fixed;
+bottom:20px;
+width:100%;
+text-align:center;
+color:red;
+">
+
+Close the window.
+
+</p>
+
+`;
+
+},4000);
+
 }
 
 </script>
